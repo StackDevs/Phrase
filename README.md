@@ -1,3 +1,3 @@
-# Freechat
+# Phrase
 
-이게 뭘까
+새로운 대화의 공간
