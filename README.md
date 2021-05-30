@@ -1,3 +1,3 @@
-# Freechat
+# Phrase
 
-moved to <a href="https://github.com/stck-dev/phrase">stck-dev/phrase</a>
+새로운 대화의 공간
