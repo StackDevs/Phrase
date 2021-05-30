@@ -2,9 +2,11 @@ import { Router, Request, Response } from 'express'
 import { sha256 } from 'js-sha256'
 
 import fs from 'fs'
-import jwt from 'jsonwebtoken'
+import jwt, { VerifyErrors } from 'jsonwebtoken'
 
 import { db } from '../global'
+
+const KEY = fs.readFileSync('../../resources/private.key').toString('utf8')
 
 const router = Router()
 
@@ -39,6 +41,27 @@ function genSalt () {
   
   return salt
 }
+
+router.post('/groups', async (req: Request, res: Response) => {
+  const {
+    token,
+    name
+  } = req.body
+
+  if (token) {
+    jwt.verify(token, KEY, async (err: VerifyErrors | null, obj?: object) => {
+      if (err) res.json({ err: 401 })
+      const { mail } = obj as { mail: string }
+      const users = await db('users').where('mail', mail)
+      const user: IUser = users[0]
+
+      db('groups')
+        .insert({
+          owner: user.id
+        })
+    })
+  }
+})
 
 router.post('/register', async (req: Request, res: Response) => {
   const {
@@ -78,7 +101,7 @@ router.get('/token', async (req: Request, res: Response) => {
   if (!user) return res.json(ERROR_OBJS.UNAUTHORIZED)
   if (sha256(user.salt + pw) === pw) {
     return res.json({
-      token: jwt.sign({ mail }, fs.readFileSync('../../resources/private.key').toString('utf8'))
+      token: jwt.sign({ mail }, KEY)
     })
   }
 

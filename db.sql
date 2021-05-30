@@ -4,7 +4,7 @@ create database freechat;
 use freechat;
 
 create table users (
-    id int,
+    id int auto_increment,
     mail text,
     nickname text,
     profileImg text,
