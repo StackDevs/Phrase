@@ -12,6 +12,11 @@ create table users (
     pw text
 );
 
+create table groups (
+    id int auto_increment,
+    owner text
+)
+
 create table messages (
     idx int,
     authorId varchar(10),
