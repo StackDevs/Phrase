@@ -14,6 +14,7 @@ create table users (
 
 create table groups (
     id int auto_increment,
+    name text,
     owner text
 )
 

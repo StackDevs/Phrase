@@ -49,6 +49,7 @@ router.post('/groups', async (req: Request, res: Response) => {
   } = req.body
 
   if (token) {
+  if (token && name) {
     jwt.verify(token, KEY, async (err: VerifyErrors | null, obj?: object) => {
       if (err) res.json({ err: 401 })
       const { mail } = obj as { mail: string }
@@ -57,6 +58,7 @@ router.post('/groups', async (req: Request, res: Response) => {
 
       db('groups')
         .insert({
+          name,
           owner: user.id
         })
     })
