@@ -62,6 +62,8 @@ router.post('/groups', async (req: Request, res: Response) => {
           owner: user.id
         })
     })
+  } else {
+    res.json(ERROR_OBJS.MORE_BODY_REQUIRES('token', 'name'))
   }
 })
 
