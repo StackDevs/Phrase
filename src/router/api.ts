@@ -48,7 +48,6 @@ router.post('/groups', async (req: Request, res: Response) => {
     name
   } = req.body
 
-  if (token) {
   if (token && name) {
     jwt.verify(token, KEY, async (err: VerifyErrors | null, obj?: object) => {
       if (err) res.json({ err: 401 })
