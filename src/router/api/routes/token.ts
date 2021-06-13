@@ -20,7 +20,7 @@ async function token (req: Request, res: Response) {
   if (!user) return res.json(ERROR_OBJS.UNAUTHORIZED)
   if (sha256(user.salt + pw) === pw) {
     return res.json({
-      token: jwt.sign({ mail }, KEY)
+      token: jwt.sign({ id: user.id }, KEY)
     })
   }
 

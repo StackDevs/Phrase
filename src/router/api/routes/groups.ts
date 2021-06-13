@@ -12,14 +12,12 @@ async function postGroups (req: Request, res: Response) {
   
   if (name) {
     const obj = jwt.decode(token)
-    const { mail } = obj as { mail: string }
-    const users = await db('users').where('mail', mail)
-    const user: IUser = users[0]
+    const { id } = obj as { id: string }
   
     db('groups')
       .insert({
         name,
-        owner: user.id
+        owner: id
       }).then(() => {
         res.json({ ok: true })
       })
