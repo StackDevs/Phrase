@@ -20,6 +20,8 @@ async function postGroups (req: Request, res: Response) {
       .insert({
         name,
         owner: user.id
+      }).then(() => {
+        res.json({ ok: true })
       })
   } else {
     res.json(ERROR_OBJS.MORE_BODY_REQUIRES('token', 'name'))
