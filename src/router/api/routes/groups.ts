@@ -26,4 +26,22 @@ async function postGroups (req: Request, res: Response) {
   }
 }
 
-export { postGroups }
+async function joinGroups (req: Request, res: Response) {
+  const { token } = req.body
+  const { targetId } = req.params
+
+  if (targetId) {
+    const obj = jwt.decode(token)
+    const { id } = obj as { id: string }
+
+    db('members')
+      .insert({
+        targetId,
+        userId: id
+      }).then(() => {
+        res.json({ ok: true })
+      })
+  }
+}
+
+export { postGroups, joinGroups }

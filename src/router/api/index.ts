@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { postGroups } from './routes/groups'
+import { joinGroups, postGroups } from './routes/groups'
 import register from './routes/register'
 import token from './routes/token'
 
@@ -11,6 +11,8 @@ const router = Router()
 router.use(checkToken)
 
 router.post('/gropus', postGroups)
+router.post('/groups/:targetId/members', joinGroups)
+
 router.post('/register', register)
 router.get('/token', token)
 
