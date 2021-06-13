@@ -5,7 +5,7 @@ import { ERROR_OBJS } from '../utils'
 import jwt from 'jsonwebtoken'
 import fs from 'fs'
 
-const KEY = fs.readFileSync('../../resources/private.key').toString('utf8')
+const KEY = fs.readFileSync('../resources/private.key').toString('utf8')
 
 async function token (req: Request, res: Response) {
   const {
