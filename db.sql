@@ -18,6 +18,11 @@ create table groups (
     owner text
 )
 
+create table members (
+    targetId int,
+    userId int
+)
+
 create table messages (
     idx int,
     authorId varchar(10),
