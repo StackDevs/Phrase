@@ -11,17 +11,17 @@ create table users (
     salt text,
     pw text
 );
-
+ 
 create table groups (
-    id int auto_increment,
-    name text,
-    owner text
-)
+    id int auto_increment key,
+    `name` text,
+    `owner` int
+);
 
 create table members (
     targetId int,
     userId int
-)
+);
 
 create table messages (
     idx int,
