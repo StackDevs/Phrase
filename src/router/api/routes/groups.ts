@@ -18,8 +18,12 @@ async function postGroups (req: Request, res: Response) {
       .insert({
         name,
         owner: id
-      }).then(() => {
-        res.json({ ok: true })
+      }).then(([row]) => {
+        db('groups')
+          .where('id', row)
+          .then((inserted) => {
+            res.json({ ok: true, id: inserted[0].id })
+          })
       })
   } else {
     res.json(ERROR_OBJS.MORE_BODY_REQUIRES('token', 'name'))
