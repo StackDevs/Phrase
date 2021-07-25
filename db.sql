@@ -19,7 +19,7 @@ create table groups (
 );
 
 create table members (
-    targetId int,
+    groupId int,
     userId int
 );
 
