@@ -1,4 +1,5 @@
 import knex from 'knex'
+import { Server } from 'socket.io'
 
 const db = knex({
   client: 'mysql',
@@ -9,4 +10,6 @@ const db = knex({
   }
 })
 
-export { db }
+let io: Server
+
+export { db, io }
