@@ -24,7 +24,7 @@ create table members (
 );
 
 create table messages (
-    idx int,
+    id int,
     authorId varchar(10),
     content text
 )
