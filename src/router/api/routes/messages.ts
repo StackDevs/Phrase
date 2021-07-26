@@ -18,6 +18,15 @@ async function postMessages (req: Request, res: Response) {
     }
 
     io.sockets.emit('msg', { message, authorId: userId })
+    db('messages')
+      .insert({
+        authorId: userId,
+        message
+      })
+
+    res.send({
+      ok: true
+    })
   }
 }
 
