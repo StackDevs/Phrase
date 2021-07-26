@@ -17,7 +17,7 @@ async function postMessages (req: Request, res: Response) {
       return res.send({ ok: false })
     }
 
-    io.sockets.emit('msg', { message, senderId: userId })
+    io.sockets.emit('msg', { message, authorId: userId })
   }
 }
 
