@@ -11,7 +11,7 @@ const router = Router()
 
 router.use(checkToken)
 
-router.post('/gropus', postGroups)
+router.post('/groups', postGroups)
 router.post('/groups/:targetId/members', joinGroups)
 
 router.post('/register', register)
