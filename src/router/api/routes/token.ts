@@ -15,10 +15,11 @@ async function token (req: Request, res: Response) {
 
   if (!mail && pw) return res.json(ERROR_OBJS.MORE_BODY_REQUIRES('mail', 'pw'))
 
-  const user: IUser = (await db('users').where('mail', mail))[0]
+  const users: IUser[] = await db('users').where({ mail })
+  const user = users[0]
 
   if (!user) return res.json(ERROR_OBJS.UNAUTHORIZED)
-  if (sha256(user.salt + pw) === pw) {
+  if (sha256(user.salt + pw) === user.pw) {
     return res.json({
       token: jwt.sign({ id: user.id }, KEY)
     })
