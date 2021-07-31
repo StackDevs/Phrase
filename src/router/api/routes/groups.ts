@@ -30,6 +30,17 @@ async function postGroups (req: Request, res: Response) {
   }
 }
 
+async function getGroups (req: Request, res: Response) {
+  const { token } = req.body
+  const obj = jwt.decode(token)
+  const { id } = obj as { id: string }
+
+  const members = await db('members')
+    .where({ id })
+  
+  res.send(members)
+}
+
 async function joinGroups (req: Request, res: Response) {
   const { token } = req.body
   const { targetId } = req.params
@@ -48,4 +59,4 @@ async function joinGroups (req: Request, res: Response) {
   }
 }
 
-export { postGroups, joinGroups }
+export { postGroups, joinGroups, getGroups }
