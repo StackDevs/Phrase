@@ -21,7 +21,8 @@ async function postMessages (req: Request, res: Response) {
     await db('messages')
       .insert({
         authorId: userId,
-        message
+        message,
+        groupId
       })
 
     res.send({

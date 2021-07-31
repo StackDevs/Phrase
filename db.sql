@@ -24,7 +24,9 @@ create table members (
 );
 
 create table messages (
-    id int,
+    id int auto_increment key,
+    groupId int,
     authorId varchar(10),
-    `message` text
+    `message` text,
+    `date` timestamp default current_timestamp,
 )
