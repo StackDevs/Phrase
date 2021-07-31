@@ -18,7 +18,7 @@ async function postMessages (req: Request, res: Response) {
     }
 
     io.sockets.emit('msg', { message, authorId: userId })
-    db('messages')
+    await db('messages')
       .insert({
         authorId: userId,
         message
