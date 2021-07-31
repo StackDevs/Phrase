@@ -49,13 +49,13 @@ async function joinGroups (req: Request, res: Response) {
     const obj = jwt.decode(token)
     const { id } = obj as { id: string }
 
-    db('members')
+    await db('members')
       .insert({
         targetId,
         userId: id
-      }).then(() => {
-        res.json({ ok: true })
       })
+
+      res.send({ ok: true })
   }
 }
 
