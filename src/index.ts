@@ -35,3 +35,4 @@ app.use(express.urlencoded({ extended: false }))
 app.use(api)
 
 server.listen(8080)
+io.listen(server)
