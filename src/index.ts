@@ -9,7 +9,7 @@ import api from './router/api'
 
 const app = express()
 const server = createServer(app)
-const io = new Server(server)
+const io = new Server({ cors: { origin: "*" } })
 
 const KEY = fs.readFileSync('../resources/private.key').toString('utf8')
 
