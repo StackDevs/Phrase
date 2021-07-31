@@ -16,10 +16,11 @@ const KEY = fs.readFileSync('../resources/private.key').toString('utf8')
 io.on('connection', socketHandler)
 
 function socketHandler (socket: Socket) {
-  if (socket.handshake.headers['authorization']) {
-    const { authorization: token } = socket.handshake.headers
+  if (socket.handshake.query['token']) {
+    const { token } = socket.handshake.query
+    console.log('abcd')
 
-    jwt.verify(token, KEY, (err: VerifyErrors | null) => {
+    jwt.verify(token as string, KEY, (err: VerifyErrors | null, decoded: object | undefined) => {
       if (err) return socket.disconnect()
     })
   } else {
