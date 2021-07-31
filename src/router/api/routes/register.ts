@@ -18,14 +18,11 @@ async function register (req: Request, res: Response) {
     salt,
     pw: sha256(salt + pw)
   }
-  
-  db('users')
+
+  await db('users')
     .insert(user)
-    .then(() => {
-      res.json({
-        code: 200
-      })
-  })
+
+  res.send({ ok: true })
 }
 
 export default register
