@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { db } from '../../../global'
 import { ERROR_OBJS } from '../utils'
 
-async function postGroups (req: Request, res: Response) {
+function postGroups (req: Request, res: Response) {
   const {
     token,
     name
