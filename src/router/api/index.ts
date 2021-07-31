@@ -9,7 +9,7 @@ import { postMessages } from './routes/messages'
 
 const router = Router()
 
-router.use(checkToken)
+router.use(/^(?!.*(register||token)).*/, checkToken)
 
 router.post('/groups', postGroups)
 router.post('/groups/:targetId/members', joinGroups)
