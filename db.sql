@@ -7,7 +7,6 @@ create table users (
     id int auto_increment key,
     mail text,
     nickname text,
-    profileImg text,
     salt text,
     pw text
 );
