@@ -1,8 +1,6 @@
 interface IUser {
   id?: number,
-  mail: string,
-  nickname?: string,
-  profileImg?: string,
+  nickname: string,
   salt: string,
   pw: string
 }
