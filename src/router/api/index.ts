@@ -5,7 +5,7 @@ import register from './routes/register'
 import token from './routes/token'
 
 import checkToken from './middlewares/checkToken'
-import { postMessages } from './routes/messages'
+import { getMessages, postMessages } from './routes/messages'
 
 const router = Router()
 
@@ -19,5 +19,6 @@ router.post('/register', register)
 router.get('/token', token)
 
 router.post('/messages/:groupId', postMessages)
+router.get('/messages/:groupId', getMessages)
 
 export default router
