@@ -18,9 +18,8 @@ io.on('connection', socketHandler)
 function socketHandler (socket: Socket) {
   if (socket.handshake.query['token']) {
     const { token } = socket.handshake.query
-    console.log('abcd')
 
-    jwt.verify(token as string, KEY, (err: VerifyErrors | null, decoded: object | undefined) => {
+    jwt.verify(token as string, KEY, (err: VerifyErrors | null) => {
       if (err) return socket.disconnect()
     })
   } else {
