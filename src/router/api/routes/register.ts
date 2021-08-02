@@ -5,16 +5,16 @@ import { ERROR_OBJS, genSalt } from '../utils'
 
 async function register (req: Request, res: Response) {
   const {
-    mail,
+    id,
     pw
   } = req.body
   
-  if (!mail && pw) return res.json(ERROR_OBJS.MORE_BODY_REQUIRES('mail', 'pw'))
+  if (!id && pw) return res.json(ERROR_OBJS.MORE_BODY_REQUIRES('mail', 'pw'))
   
   const salt = genSalt()
   
   const user: IUser = {
-    mail,
+    id,
     salt,
     pw: sha256(salt + pw)
   }

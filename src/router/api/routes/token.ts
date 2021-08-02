@@ -9,13 +9,13 @@ const KEY = fs.readFileSync('../resources/private.key').toString('utf8')
 
 async function token (req: Request, res: Response) {
   const {
-    mail, 
+    id, 
     pw
   } = req.body
 
-  if (!mail && pw) return res.json(ERROR_OBJS.MORE_BODY_REQUIRES('mail', 'pw'))
+  if (!id && pw) return res.json(ERROR_OBJS.MORE_BODY_REQUIRES('id', 'pw'))
 
-  const users: IUser[] = await db('users').where({ mail })
+  const users: IUser[] = await db('users').where({ id })
   const user = users[0]
 
   if (!user) return res.json(ERROR_OBJS.UNAUTHORIZED)

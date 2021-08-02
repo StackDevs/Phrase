@@ -1,6 +1,6 @@
 interface IUser {
-  id?: number,
-  nickname: string,
+  idx?: number,
+  id: string,
   salt: string,
   pw: string
 }
