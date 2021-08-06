@@ -1,8 +1,7 @@
 const ERROR_OBJS = {
   UNAUTHORIZED: {
-    error: 401,
-    msg: 'Unauthorized',
-    token: null
+    ok: false,
+    msg: 'Unauthorized'
   },
   
   MORE_BODY_REQUIRES(...bodys: string[]) {
@@ -14,7 +13,7 @@ const ERROR_OBJS = {
     })
   
     return {
-      error: 400,
+      ok: false,
       msg: `More body(${strBodys}) requires`
     }
   }
