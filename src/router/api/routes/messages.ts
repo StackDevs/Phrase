@@ -37,13 +37,15 @@ async function postMessages (req: Request, res: Response) {
       return res.send({ ok: false })
     }
 
-    io.sockets.emit('msg', { message, authorId: userId })
+    const msgObj = {
+      authorId: userId,
+      message,
+      groupId
+    }
+
+    io.to(groupId).emit('msg', msgObj)
     await db('messages')
-      .insert({
-        authorId: userId,
-        message,
-        groupId
-      })
+      .insert(msgObj)
 
     res.send({
       ok: true
