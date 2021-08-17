@@ -56,7 +56,7 @@ async function joinGroups (req: Request, res: Response) {
       })
 
       res.send({ ok: true })
-  }
+  } else res.send({ ok: false, reasons: 'more param required(groupId)' })
 }
 
 export { postGroups, joinGroups, getGroups }
