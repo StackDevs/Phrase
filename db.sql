@@ -18,7 +18,7 @@ create table groups (
 
 create table members (
     groupId int,
-    userId int
+    userId text
 );
 
 create table messages (
